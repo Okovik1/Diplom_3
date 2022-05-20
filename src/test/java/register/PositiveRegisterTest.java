@@ -3,6 +3,7 @@ package register;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import stellaburgerspageobject.LoginPage;
 import stellaburgerspageobject.RegisterPage;
@@ -17,7 +18,7 @@ public class PositiveRegisterTest {
     public void positiveRegisterTest() {
         //открывается страница и создаётся экземпляр класса страницы
         RegisterPage registerPage =
-                open("https://stellarburgers.nomoreparties.site/register",
+                open(RegisterPage.URL,
                         RegisterPage.class);
 
         //Заполнить все поля регистрационной формы
@@ -30,6 +31,6 @@ public class PositiveRegisterTest {
 
         //Проверка перехода на страницу Входа
         LoginPage loginPage = page(LoginPage.class);
-        loginPage.isEntranceTextDisplayed();
+        Assert.assertTrue("Не отобразился заголовок Вход", loginPage.isEntranceTextDisplayed());
     }
 }

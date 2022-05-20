@@ -1,6 +1,7 @@
 package transitions;
 
 import io.qameta.allure.junit4.DisplayName;
+import org.junit.Assert;
 import org.junit.Test;
 import stellaburgerspageobject.MainPage;
 import stellaburgerspageobject.PersonalAccountPage;
@@ -16,7 +17,7 @@ public class FromPersonalAccToMainPageViaConstructorTest {
     public void fromPersonalAccToMainPageViaConstructorTest(){
 
         MainPage mainPage=
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
 
         mainPage.clickButtonPersonalAccount();
@@ -25,11 +26,12 @@ public class FromPersonalAccToMainPageViaConstructorTest {
         personalAccountPage.clickConstructor();
 
         MainPage mainPage1 = page(MainPage.class);
-        mainPage1.bunsSectionIsVisible();
-        mainPage1.createBurgerIsVisible();
-        mainPage1.sauceSectionIsVisible();
+        Assert.assertTrue("Не отобразился заголовок Булок", mainPage1.bunsSectionIsVisible());
+        Assert.assertTrue("Не отобразился заголовок Соберите бургер", mainPage1.createBurgerIsVisible());
+        Assert.assertTrue("Не отобразился заголовок Соусов", mainPage1.sauceSectionIsVisible());
         mainPage1.clickFillingsSectionHeader();
-        mainPage1.fillingsSectionIsVisible();
+        Assert.assertTrue("Не отобразился заголовок Начинок", mainPage1.fillingsSectionIsVisible());
+
 
     }
 }

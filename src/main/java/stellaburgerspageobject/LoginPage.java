@@ -5,15 +5,21 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.time.Duration;
+
 public class LoginPage {
+
+    public static final String URL = "https://stellarburgers.nomoreparties.site/login";
 
     //Заглавие инпутов - "Вход"
     @FindBy(how = How.XPATH, using = ".//div[@class= 'Auth_login__3hAey']/h2[text()='Вход']")
     private SelenideElement entranceText;
 
     // Проверяем наличие Заглавия инпутов - "Вход"
-    public void isEntranceTextDisplayed() {
+    public boolean isEntranceTextDisplayed() {
+        entranceText.shouldBe(Condition.visible, Duration.ofSeconds(10));
         entranceText.shouldHave(Condition.text("Вход"));
+        return entranceText.isDisplayed();
     }
 
     //Инпут Email

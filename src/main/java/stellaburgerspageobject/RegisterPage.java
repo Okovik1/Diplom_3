@@ -5,8 +5,11 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.time.Duration;
+
 public class RegisterPage {
 
+    public static final String URL = "https://stellarburgers.nomoreparties.site/register";
     //Инпут для написания Имени
     @FindBy(how = How.XPATH, using = ".//fieldset[1]/div/div/input")
     private SelenideElement fillName;
@@ -46,8 +49,10 @@ public class RegisterPage {
     private SelenideElement errorText;
 
     // Проверяем наличие ошибки "Некорректный пароль"
-    public void isErrorTextDisplayed() {
+    public boolean isErrorTextDisplayed() {
+        errorText.shouldBe(Condition.visible, Duration.ofSeconds(10));
         errorText.shouldHave(Condition.text("Некорректный пароль"));
+        return errorText.isDisplayed();
     }
 
     //Уже зарегистрированы? Войти

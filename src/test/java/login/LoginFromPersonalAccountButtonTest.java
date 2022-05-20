@@ -2,6 +2,7 @@ package login;
 
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import stellaburgerspageobject.LoginPage;
@@ -20,7 +21,7 @@ public class LoginFromPersonalAccountButtonTest {
     @Before
     public void setUp() {
         RegisterPage registerPage =
-                open("https://stellarburgers.nomoreparties.site/register",
+                open(RegisterPage.URL,
                         RegisterPage.class);
 
         userName = RandomStringUtils.randomAlphabetic(10);
@@ -40,7 +41,7 @@ public class LoginFromPersonalAccountButtonTest {
     @DisplayName("User login from personal account button")
     public void loginFromPersonalAccountButtonTest() {
         MainPage mainPage =
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
 
         //Нажать на кнопку Войти
@@ -53,11 +54,11 @@ public class LoginFromPersonalAccountButtonTest {
 
         //Переход на главную страницу
         MainPage mainPage1 =
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
 
-        // На месте кнопки Войти появилась кнопка Оформит заказ
-        mainPage1.buttonMakeAnOrderIsVisible();
+        // На месте кнопки Войти появилась кнопка Оформить заказ
+        Assert.assertTrue("Не отобразилась кнопка Оформить заказ", mainPage1.buttonMakeAnOrderIsVisible());
     }
 
 }

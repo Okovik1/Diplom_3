@@ -2,6 +2,7 @@ package transitions;
 
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import stellaburgerspageobject.LoginPage;
@@ -21,7 +22,7 @@ public class ExitFromPersonalAccTest {
     @Before
     public void setUp() {
         RegisterPage registerPage =
-                open("https://stellarburgers.nomoreparties.site/register",
+                open(RegisterPage.URL,
                         RegisterPage.class);
 
         userName = RandomStringUtils.randomAlphabetic(10);
@@ -43,7 +44,7 @@ public class ExitFromPersonalAccTest {
     public void exitFromPersonalAccTest() {
 
         MainPage mainPage =
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
 
         //Нажать на кнопку Войти
@@ -59,6 +60,6 @@ public class ExitFromPersonalAccTest {
         personalAccountPage.clickExitSection();
 
         LoginPage loginPage1 = page(LoginPage.class);
-        loginPage1.isEntranceTextDisplayed();
+        Assert.assertTrue("Не отобразился заголовок Вход", loginPage1.isEntranceTextDisplayed());
     }
 }

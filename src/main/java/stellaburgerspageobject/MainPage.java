@@ -1,17 +1,22 @@
 package stellaburgerspageobject;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.time.Duration;
+
 public class MainPage {
+
+    public static final String URL = "https://stellarburgers.nomoreparties.site/";
 
     //Кнопка "Войти в аккаунт"
     @FindBy(how = How.XPATH, using = ".//button[@class= 'button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg']")
     private SelenideElement buttonEntrance;
 
     //Нажать на кнопку "Войти в аккаунт"
-    public void clickButtonEntrance(){
+    public void clickButtonEntrance() {
         buttonEntrance.click();
     }
 
@@ -20,7 +25,7 @@ public class MainPage {
     private SelenideElement buttonPersonalAccount;
 
     //Нажать на кнопку "Войти в  Личный кабинет"
-    public void clickButtonPersonalAccount(){
+    public void clickButtonPersonalAccount() {
         buttonPersonalAccount.click();
     }
 
@@ -29,8 +34,9 @@ public class MainPage {
     private SelenideElement buttonMakeAnOrder;
 
     //Кнопка оформить заказ отображается
-    public void buttonMakeAnOrderIsVisible(){
-        buttonMakeAnOrder.isDisplayed();
+    public boolean buttonMakeAnOrderIsVisible() {
+        buttonMakeAnOrder.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        return buttonMakeAnOrder.isDisplayed();
     }
 
     //"Соберите бургер"
@@ -38,8 +44,9 @@ public class MainPage {
     private SelenideElement createBurger;
 
     //Заголовок Соберите бургер отображается
-    public void createBurgerIsVisible(){
-        buttonMakeAnOrder.isDisplayed();
+    public boolean createBurgerIsVisible() {
+        createBurger.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return createBurger.isDisplayed();
     }
 
     //"Булки"
@@ -47,8 +54,9 @@ public class MainPage {
     private SelenideElement bunsSection;
 
     //Булки
-    public void bunsSectionIsVisible(){
-        bunsSection.isDisplayed();
+    public boolean bunsSectionIsVisible() {
+        bunsSection.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return bunsSection.isDisplayed();
     }
 
     //Соусы
@@ -56,8 +64,9 @@ public class MainPage {
     private SelenideElement sauceSection;
 
     //Булки
-    public void sauceSectionIsVisible(){
-        sauceSection.isDisplayed();
+    public boolean sauceSectionIsVisible() {
+        sauceSection.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return sauceSection.isDisplayed();
     }
 
     //Верхний раздел Соусы
@@ -65,7 +74,7 @@ public class MainPage {
     private SelenideElement sauceSectionHeader;
 
     //Булки
-    public void clickSauceSection(){
+    public void clickSauceSection() {
         sauceSectionHeader.click();
     }
 
@@ -74,7 +83,7 @@ public class MainPage {
     private SelenideElement bunsSectionHeader;
 
     //Булки
-    public void clickBunsSectionHeader(){
+    public void clickBunsSectionHeader() {
         bunsSectionHeader.click();
     }
 
@@ -83,7 +92,7 @@ public class MainPage {
     private SelenideElement fillingsSectionHeader;
 
     //Начинки нажать
-    public void clickFillingsSectionHeader(){
+    public void clickFillingsSectionHeader() {
         fillingsSectionHeader.click();
     }
 
@@ -92,8 +101,9 @@ public class MainPage {
     private SelenideElement fillingsSection;
 
     //Начинки отображаются
-    public void fillingsSectionIsVisible(){
-        fillingsSection.isDisplayed();
+    public boolean fillingsSectionIsVisible() {
+        fillingsSection.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return fillingsSection.isDisplayed();
     }
 
     //Значок StellarsBurgers
@@ -101,18 +111,10 @@ public class MainPage {
     private SelenideElement stellarsBurgers;
 
     //Нажать на StellarsBurgers
-    public void clickStellarsBurgers(){
-        stellarsBurgers.isDisplayed();
+    public boolean StellarsBurgersIsVisible() {
+        stellarsBurgers.shouldBe(Condition.visible, Duration.ofSeconds(10));
+       return  stellarsBurgers.isDisplayed();
     }
-
-
-
-
-
-
-
-
-
 
 
 }

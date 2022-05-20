@@ -2,6 +2,7 @@ package transitions;
 
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import stellaburgerspageobject.LoginPage;
@@ -21,7 +22,7 @@ public class TransitionIntoPersonalAccTest {
     @Before
     public void setUp() {
         RegisterPage registerPage =
-                open("https://stellarburgers.nomoreparties.site/register",
+                open(RegisterPage.URL,
                         RegisterPage.class);
 
         userName = RandomStringUtils.randomAlphabetic(10);
@@ -37,7 +38,7 @@ public class TransitionIntoPersonalAccTest {
         registerPage.clickButtonRegister();
 
         MainPage mainPage =
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
 
         //Нажать на кнопку Войти
@@ -53,17 +54,18 @@ public class TransitionIntoPersonalAccTest {
     @DisplayName("Transition into Personal account")
     public void transitionIntoPersonalAccTest(){
         MainPage mainPage =
-                open("https://stellarburgers.nomoreparties.site/",
+                open(MainPage.URL,
                         MainPage.class);
         mainPage.clickButtonPersonalAccount();
 
         PersonalAccountPage personalAccountPage = page(PersonalAccountPage.class);
 
-        personalAccountPage.inputNameIsVisible();
-        personalAccountPage.inputLoginIsVisible();
-        personalAccountPage.inputPasswordIsVisible();
-        personalAccountPage.profileSectionIsVisible();
-        personalAccountPage.historyOfOrdersSectionIsVisible();
-        personalAccountPage.exitSectionSectionIsVisible();
+        Assert.assertTrue("Не отобразилось место для ввода Имени", personalAccountPage.inputNameIsVisible());
+        Assert.assertTrue("Не отобразилось место для ввода Логина", personalAccountPage.inputLoginIsVisible());
+        Assert.assertTrue("Не отобразилось место для ввода Пароля", personalAccountPage.inputPasswordIsVisible());
+        Assert.assertTrue("Не отобразился раздел Профиль ", personalAccountPage.profileSectionIsVisible());
+        Assert.assertTrue("Не отобразился разде История заказов", personalAccountPage.historyOfOrdersSectionIsVisible());
+        Assert.assertTrue("Не отобразился раздел Выход", personalAccountPage.exitSectionSectionIsVisible());
+
     }
 }
